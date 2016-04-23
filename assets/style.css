@@ -1,0 +1,23 @@
+body {
+  background: black;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body::before {
+  content: "Drop image here";
+  font-family: Arial;
+  font-weight: 700;
+  font-size: 300%;
+  color: white;
+  left: 30%;
+  top: 50%;
+  position: absolute;
+  text-shadow: 0 0 3px #fff;
+}
+
+div#overlay {
+  z-index: 1000; /* just to make sure a dropped-in image is shown beneath it */
+}
