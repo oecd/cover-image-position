@@ -4,14 +4,20 @@
     <meta charset="utf-8">
     <title>image positioning</title>
     <link rel="stylesheet" href="assets/style.css" media="screen" harset="utf-8">
-    <script src="assets/interact.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="assets/script.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
-    <div id="overlay">
-    <img src="assets/template.png"/>
+
+    <div id="container">
+      <div id="overlay"><img src="assets/template.png" alt="" /></div>
+        <div id="image">
+        <img id="coverimage"/>
+        </div>
     </div>
-    <div id="dropzone">
-    </div>
+    <div id="dropzone"></div>
+    <div id="handle"></div>
+
+    <script src="assets/jquery-ui-1.11.4/external/jquery/jquery.js" charset="utf-8"></script>
+    <script src="assets/jquery-ui-1.11.4/jquery-ui.js" charset="utf-8"></script>
+    <script src="assets/script.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>
