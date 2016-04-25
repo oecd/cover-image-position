@@ -1,3 +1,5 @@
+$(function(){
+
 var cvr, hdl, img;
 
 function handleFileSelect(evt) {
@@ -80,3 +82,5 @@ function handleDragOver(evt) {
 var dropZone = document.getElementById('dropzone');
 dropZone.addEventListener('dragover', handleDragOver, false);
 dropZone.addEventListener('drop', handleFileSelect, false);
+
+});
