@@ -10,7 +10,7 @@ body {
   border: 0;
   padding: 0;
   overflow: hidden;
-  background-color: black;
+  background: white;
 }
 
 div#container {
@@ -171,7 +171,9 @@ div#copypaste textarea {
 	position: absolute;
 	top: 0px;
 }
-.container-palette {height: 90%}
+.container-palette {
+	height: 90%;
+}
 
 .palette {
 	font-family: sans-serif;

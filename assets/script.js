@@ -1,6 +1,5 @@
 $(function(){
-
-  var hdl, img, oHeight, oWidth;
+  var hdl, img, oHeight, oWidth, color;
 
   function updateStats(img) {
     var stats = $("div#stats");
