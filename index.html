@@ -3,20 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Cover image positioning</title>
-    <link rel="stylesheet" href="assets/style.css" media="screen" harset="utf-8">
-    <link rel="stylesheet" type="text/css" href="assets/jquery-ui-1.11.4/jquery-ui.css">
-    <script src="assets/jquery-ui-1.11.4/external/jquery/jquery.js" charset="utf-8"></script>
-    <script src="assets/jquery-ui-1.11.4/jquery-ui.min.js" charset="utf-8"></script>
-    <!-- <script src="https://code.jquery.com/jquery-migrate-1.1.0.js" charset="utf-8"></script> -->
-    <script src="assets/script.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="assets/style.css" media="screen" harset="utf-8"></link>
   </head>
-
+  <body>
     <div id="container">
       <div id="quotezone"></div>
-      <div id="overlay"><img src="assets/template.png" alt="" /></div>
+      <div id="overlay"><img src="assets/template.png" alt=""/></div>
     </div>
     <div id="dropzone"></div>
-    <div id="handle"></div>
 
     <div id="hidezone">
       <p style="color:white; padding:2em">
@@ -25,9 +19,10 @@
         High quality images (with a minimal resolution of 300 dpi) are recommended for optimal print quality and for any follow-up digital products.<br>
         Licenses to use images need to be provided when the cover process starts.<br>
         Please also read: "Evolution of the Publication Cover" on the OECD Authors Community.
+      </p>
     </div>
 
-    <a id="reset" class="ui-button ui-widget ui-corner-all ui-icon-refresh" href="index.html">Reset</a>
+    <a id="reset" href="index.html">Reset</a>
     <div id="stats">
       <div id="left"  >  Left: <span></span> px</div>
       <div id="top"   >   Top: <span></span> px</div>
@@ -36,5 +31,7 @@
       <div id="zoom"  >  Zoom: <span></span>%</div>
     </div>
     <div id="copypaste" title="Copy and paste this"><textarea></textarea></div>
+    <script src="assets/interact.min.js" charset="utf-8"></script>
+    <script src="assets/script.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>

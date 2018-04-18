@@ -1,110 +1,135 @@
-$(function(){
+/* global FileReader Image interact */
+window.onload = function () {
+  var oHeight, oWidth
+  var dropZone = document.getElementById('dropzone')
 
-  var hdl, img, oHeight, oWidth;
-
-  function updateStats(img) {
-    var stats = $("div#stats");
-      stats.find("div#height span").html(img.css("height").replace("px", ""));
-      stats.find("div#width span").html(img.css("width").replace("px", ""));
-      stats.find("div#top span").html(img.css("top").replace("px", ""));
-      stats.find("div#left span").html(img.css("left").replace("px", ""));
-      stats.find("div#zoom span").html(Math.round(img.css("width").replace("px", "") * 100 / oWidth));
+  function updateStats (img) {
+    const stats = document.getElementById('stats')
+    stats.querySelectorAll('div#height span')[0].innerHTML = img.height
+    stats.querySelectorAll('div#width span')[0].innerHTML = img.width
+    stats.querySelectorAll('div#top span')[0].innerHTML = img.style.top.replace('px', '')
+    stats.querySelectorAll('div#left span')[0].innerHTML = img.style.left.replace('px', '')
+    stats.querySelectorAll('div#zoom span')[0].innerHTML = Math.round(img.style.width.replace('px', '') * 100 / oWidth)
   }
 
-  function handleFileSelect(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
+  function handleFileSelect (evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
 
-    var file = evt.dataTransfer.files[0],
-        imgDiv = $('div#image'),
-        reader = new FileReader();
+    var file = evt.dataTransfer.files[0]
+    var reader = new FileReader()
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(file)
 
-    reader.onload = (function(theFile) {
-      return function(e) {
-        imgDiv.prepend("<img id='coverimage' src='"+ e.target.result +"' title='"+escape(theFile.name)+"'/>");
-        img = $("#coverimage");
-        oWidth = img.width(); //img.clientWidth;
-        oHeight = img.height(); //img.clientHeight;
+    reader.onloadend = function (e) {
+      var img = new Image()
+      img.src = e.target.result
+      img.setAttribute('id', 'coverimage')
+      img.setAttribute('title', escape(file.name))
+      dropZone.parentNode.appendChild(img)
+
+      img.onload = function () {
+        // img = document.getElementById('coverimage')
+        oWidth = this.width // img.clientWidth
+        oHeight = this.height // img.clientHeight
 
         // 850px x 1024px
-        var vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        var vph = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-        hdl = $("#handle");
+        var vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+        var vph = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
         // resize images bigger than the viewport
         if (oHeight > vph || oWidth > vpw) {
-          img.css("height", "500px").css("width", "auto");
-          hdl.css("height", "500px").css("width", "auto");
+          img.style.height = '500px'
+          img.style.width = 'auto'
         }
 
-        var newWidth = img.width();
-        var newHeight = img.height();
+        var newWidth = img.width
+        var newHeight = img.height
 
-        img
-          .css("top", Math.round((vph - newHeight) / 2) + "px")
-          .css("left", Math.round((vpw - newWidth) / 2) + "px");
-        hdl
-          .css("top", Math.round((vph - newHeight) / 2) + "px")
-          .css("left", Math.round((vpw - newWidth) / 2) + "px");
+        img.style.top = Math.round((vph - newHeight) / 2) + 'px'
+        img.style.left = Math.round((vpw - newWidth) / 2) + 'px'
 
-        hdl
-          .css('height', newHeight)
-          .css('width', newWidth)
-          .css("display", "block");
-
-          hdl.resizable({
-            aspectRatio: true,
-            autoHide: true,
-            alsoResize: "#coverimage",
-            handles: 'all',
-            resize: function(event, ui) {
-              img
-                .css('left', ui.position.left)
-                .css('top', ui.position.top);
-              updateStats(img);
+        interact('#coverimage')
+          .resizable({
+            preserveAspectRatio: true,
+            invert: 'none',
+            edges: { left: true, right: true, bottom: true, top: true },
+            // minimum size
+            restrictSize: {
+              min: { width: 100, height: 50 }
+            },
+            inertia: true
+          })
+          .draggable({
+            onmove: window.dragMoveListener,
+            restrict: {
+              restriction: 'parent'
             }
-          });
+          })
+          .on('resizemove', function (event) {
+            const target = event.target
+            let x = (parseFloat(target.getAttribute('data-x')) || 0)
+            let y = (parseFloat(target.getAttribute('data-y')) || 0)
 
-          hdl.draggable({
-            // containment: "document",
-            drag: function(event, ui) {
-              img
-                .css('left', ui.position.left)
-                .css('top', ui.position.top);
-              updateStats(img);
-            }
-          });
+            // update the element's style
+            target.style.width = event.rect.width + 'px'
+            target.style.height = event.rect.height + 'px'
 
-          // display a button to reset
-          $("a#reset").css("display", "block");
-          $("div#stats").css("display", "block");
-          updateStats(img);
-      };
-    })(file);
+            // translate when resizing from top or left edges
+            x += event.deltaRect.left
+            y += event.deltaRect.top
 
-    // Read in the image file as a data URL.
-    reader.readAsDataURL(file);
-    // destroy dropZone ...
-    dropZone.parentNode.removeChild(dropZone);
+            target.style.webkitTransform = target.style.transform =
+              'translate(' + x + 'px,' + y + 'px)'
+
+            target.setAttribute('data-x', x)
+            target.setAttribute('data-y', y)
+            // updateStats(img)
+            // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+          })
+
+        // display a button to reset
+        // $('a#reset').css('display', 'block')
+        document.getElementById('stats').style.display = 'block'
+      }
+
+      // destroy dropZone ...
+      dropZone.parentNode.removeChild(dropZone)
+    }
   }
 
-  function handleDragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  function handleDragOver (evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
+    evt.dataTransfer.dropEffect = 'copy' // Explicitly show this is a copy.
   }
 
   // Setup the dnd listeners.
-  var dropZone = document.getElementById('dropzone');
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileSelect, false);
+  dropZone.addEventListener('dragover', handleDragOver, false)
+  dropZone.addEventListener('drop', handleFileSelect, false)
 
-  $("div#stats").on("click", function () {
-    $("div#copypaste textarea").val($("div#stats").text()).select();
-    $("div#copypaste").dialog();
-  })
-  $("a#reset").button({
-    icons: { primary: "ui-icon-refresh"}
-  });
-});
+  function dragMoveListener (event) {
+    const target = event.target
+    // keep the dragged position in the data-x/data-y attributes
+    let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+    let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+    // translate the element
+    target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)'
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x)
+    target.setAttribute('data-y', y)
+    updateStats(target)
+  }
+
+  // this is used later in the resizing and gesture demos
+  window.dragMoveListener = dragMoveListener
+
+  // $('div#stats').on('click', function () {
+  //   $('div#copypaste textarea').val($('div#stats').text()).select()
+  //   $('div#copypaste').dialog()
+  // })
+}
