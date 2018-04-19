@@ -2,14 +2,15 @@
 window.onload = function () {
   var oHeight, oWidth
   var dropZone = document.getElementById('dropzone')
+  var stats = document.getElementById('stats')
 
   function updateStats (img) {
-    const stats = document.getElementById('stats')
-    stats.querySelectorAll('div#height span')[0].innerHTML = img.height
-    stats.querySelectorAll('div#width span')[0].innerHTML = img.width
-    stats.querySelectorAll('div#top span')[0].innerHTML = img.style.top.replace('px', '')
-    stats.querySelectorAll('div#left span')[0].innerHTML = img.style.left.replace('px', '')
-    stats.querySelectorAll('div#zoom span')[0].innerHTML = Math.round(img.style.width.replace('px', '') * 100 / oWidth)
+    const rect = img.getBoundingClientRect()
+    stats.querySelectorAll('div#height span')[0].innerHTML = Math.round(rect.height)
+    stats.querySelectorAll('div#width span')[0].innerHTML = Math.round(rect.width)
+    stats.querySelectorAll('div#top span')[0].innerHTML = Math.round(rect.top)
+    stats.querySelectorAll('div#left span')[0].innerHTML = Math.round(rect.left)
+    stats.querySelectorAll('div#zoom span')[0].innerHTML = Math.round(rect.width * 100 / oWidth)
   }
 
   function handleFileSelect (evt) {
@@ -84,13 +85,13 @@ window.onload = function () {
 
             target.setAttribute('data-x', x)
             target.setAttribute('data-y', y)
-            // updateStats(img)
-            // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+            updateStats(target)
           })
 
         // display a button to reset
         // $('a#reset').css('display', 'block')
         document.getElementById('stats').style.display = 'block'
+        updateStats(img)
       }
 
       // destroy dropZone ...
