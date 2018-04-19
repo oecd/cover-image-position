@@ -30,9 +30,8 @@ window.onload = function () {
       dropZone.parentNode.appendChild(img)
 
       img.onload = function () {
-        // img = document.getElementById('coverimage')
-        oWidth = this.width // img.clientWidth
-        oHeight = this.height // img.clientHeight
+        oWidth = this.width
+        oHeight = this.height
 
         // 850px x 1024px
         var vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
