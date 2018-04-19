@@ -129,8 +129,8 @@ window.onload = function () {
   // this is used later in the resizing and gesture demos
   window.dragMoveListener = dragMoveListener
 
-  // $('div#stats').on('click', function () {
-  //   $('div#copypaste textarea').val($('div#stats').text()).select()
-  //   $('div#copypaste').dialog()
-  // })
+  stats.addEventListener('click', function (e) {
+    stats.contentEditable = true
+    window.getSelection().selectAllChildren(stats)
+  })
 }
