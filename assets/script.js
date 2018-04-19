@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* global FileReader Image interact */
 window.onload = function () {
   var oHeight, oWidth
@@ -12,18 +11,6 @@ window.onload = function () {
     stats.querySelectorAll('div#top span')[0].innerHTML = Math.round(rect.top)
     stats.querySelectorAll('div#left span')[0].innerHTML = Math.round(rect.left)
     stats.querySelectorAll('div#zoom span')[0].innerHTML = Math.round(rect.width * 100 / oWidth)
-=======
-$(function(){
-  var hdl, img, oHeight, oWidth, color;
-
-  function updateStats(img) {
-    var stats = $("div#stats");
-      stats.find("div#height span").html(img.css("height").replace("px", ""));
-      stats.find("div#width span").html(img.css("width").replace("px", ""));
-      stats.find("div#top span").html(img.css("top").replace("px", ""));
-      stats.find("div#left span").html(img.css("left").replace("px", ""));
-      stats.find("div#zoom span").html(Math.round(img.css("width").replace("px", "") * 100 / oWidth));
->>>>>>> 0196cab49b640b381bb464b92075449d3798d261
   }
 
   function handleFileSelect (evt) {
