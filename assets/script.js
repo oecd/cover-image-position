@@ -89,7 +89,7 @@ window.onload = function () {
           })
 
         // display a button to reset
-        // $('a#reset').css('display', 'block')
+        document.getElementById('reset').style.display = 'block'
         document.getElementById('stats').style.display = 'block'
         updateStats(img)
       }
