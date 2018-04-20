@@ -33,9 +33,12 @@ window.onload = function () {
         oWidth = this.width
         oHeight = this.height
 
-        // 850px x 1024px
         var vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
         var vph = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+
+        // these are thee coordinates for the optical centre of the template.png
+        var coverCenterX = 326
+        var coverCenterY = 520
 
         // resize images bigger than the viewport
         if (oHeight > vph || oWidth > vpw) {
@@ -43,11 +46,8 @@ window.onload = function () {
           img.style.width = 'auto'
         }
 
-        var newWidth = img.width
-        var newHeight = img.height
-
-        img.style.top = Math.round((vph - newHeight) / 2) + 'px'
-        img.style.left = Math.round((vpw - newWidth) / 2) + 'px'
+        img.style.top = Math.round(coverCenterY - (this.height / 2)) + 'px'
+        img.style.left = Math.round(coverCenterX - (this.width / 2)) + 'px'
 
         interact('#coverimage')
           .resizable({
@@ -87,7 +87,7 @@ window.onload = function () {
             updateStats(target)
           })
 
-        // display a button to reset
+        // display a button to reset and the statistics
         document.getElementById('reset').style.display = 'block'
         document.getElementById('stats').style.display = 'block'
         updateStats(img)
