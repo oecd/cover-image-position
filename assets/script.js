@@ -133,4 +133,41 @@ window.onload = function () {
     stats.contentEditable = true
     window.getSelection().selectAllChildren(stats)
   })
+  document.querySelector('#info i').addEventListener('click', function (e) {
+    console.log(`click on info button`)
+  })
+  document.querySelector('#save i').addEventListener('click', function (e) {
+    console.log(`click on save button`)
+    filename = `${document.getElementById('maintitle').innerText}.png`
+    const container = document.querySelector('#container')
+    html2canvas(container, {width: 652, height: 850}).then(
+      (canvas) => {
+        canvas.toBlob(function (blob) {
+          saveAs(blob, filename)
+        })
+      },
+      (err) => {
+        console.log(`Error: ${err}`)
+      })
+  })
+  // Get the modal
+  var modal = document.getElementById('info-content')
+  // Get the button that opens the modal
+  var btn = document.getElementById('info')
+  // Get the <span> element that closes the modal
+  var closeButton = document.getElementsByClassName('close')[0]
+  // When the user clicks on the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = 'block'
+  }
+  // When the user clicks on <span> (x), close the modal
+  closeButton.onclick = function () {
+    modal.style.display = 'none'
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = 'none'
+    }
+  }
 }

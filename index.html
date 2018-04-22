@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Cover image positioning</title>
     <link rel="stylesheet" href="assets/style.css" media="screen" harset="utf-8"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   </head>
   <body>
     <div id="container">
@@ -13,24 +14,39 @@
       <div id="year" contenteditable="true">2018</div>
       <div id="overlay"><img src="assets/template.png" alt=""/></div>
     </div>
-    <div id="hidezone" style="margin-top:7em">
-      <p style="color:white; padding:2em">
-        This cover simulator allows you to get an idea how an illustration would look on a standard 210 x 280 mm publication cover.<br>
-        You may use it for reference, but the image will still need to conform to PAC's requirements for cover illustrations.<br>
-        High quality images (with a minimal resolution of 300 dpi) are recommended for optimal print quality and for any follow-up digital products.<br>
-        Licenses to use images need to be provided when the cover process starts.<br>
-        Please also read: "Evolution of the Publication Cover" on the OECD Authors Community.
-      </p>
+    <div id="hidezone" class="no-print">
+      <div id="stats" class="no-print">
+        <div id="left"  >  Left: <span></span> px</div>
+        <div id="top"   >   Top: <span></span> px</div>
+        <div id="width" > Width: <span></span> px</div>
+        <div id="height">Height: <span></span> px</div>
+        <div id="zoom"  >  Zoom: <span></span>%</div>
+      </div>
+      <div class="modal" id="info-content">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>This cover simulator allows you to get an idea how an illustration would look on a standard 210 x 280 mm publication cover.</p>
+          <p>You may use it for reference, but the image will still need to conform to PAC's requirements for cover illustrations.</p>
+          <p>High quality images (with a minimal resolution of 300 dpi) are recommended for optimal print quality and for any follow-up digital products.</p>
+          <p>Licenses to use images need to be provided when the cover process starts.</p>
+          <p>Please also read: "Evolution of the Publication Cover" on the OECD Authors Community.</p>
+        </div>
+      </div>
+      <div id="buttons">
+        <a title="Info" id="info" class="button">
+          <i class="fas fa-info fa-3x"></i>
+        </a>
+        <br/>
+        <a title="Download" id="save" class="button">
+          <i class="fas fa-save fa-3x"></i>
+        </a>
+        <br/>
+        <a title="Reset" id="reset" class="button no-print" href="javascript:window.location.reload(false)">
+          <i class="fas fa-redo fa-3x"></i>
+        </a>
+      </div>
     </div>
     <div id="dropzone"></div>
-    <a id="reset" class="button" href="javascript:window.location.reload(false)">Reset</a>
-    <div id="stats">
-      <div id="left"  >  Left: <span></span> px</div>
-      <div id="top"   >   Top: <span></span> px</div>
-      <div id="width" > Width: <span></span> px</div>
-      <div id="height">Height: <span></span> px</div>
-      <div id="zoom"  >  Zoom: <span></span>%</div>
-    </div>
     <script src="assets/interact.min.js" charset="utf-8"></script>
     <script src="assets/html2canvas.min.js" charset="utf-8"></script>
     <script src="assets/FileSaver.min.js" charset="utf-8"></script>
