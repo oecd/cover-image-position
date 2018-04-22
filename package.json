@@ -1,0 +1,25 @@
+{
+  "name": "cover-image-position",
+  "version": "1.0.0",
+  "description": "A basic page that allows a potential image to be placed within a template of a publication to determine its position and size.",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfix/cover-image-position.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfix/cover-image-position/issues"
+  },
+  "homepage": "https://github.com/jfix/cover-image-position#readme",
+  "dependencies": {
+    "html2canvas": "^1.0.0-alpha.12"
+  }
+}

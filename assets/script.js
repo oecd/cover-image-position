@@ -1,8 +1,9 @@
-/* global FileReader Image interact */
+/* global FileReader Image interact html2canvas saveAs */
 window.onload = function () {
   var oHeight, oWidth
   var dropZone = document.getElementById('dropzone')
   var stats = document.getElementById('stats')
+  var filename = 'cover-position-screenshot.png'
 
   function updateStats (img) {
     const rect = img.getBoundingClientRect()
@@ -27,7 +28,7 @@ window.onload = function () {
       img.src = e.target.result
       img.setAttribute('id', 'coverimage')
       img.setAttribute('title', escape(file.name))
-      dropZone.parentNode.appendChild(img)
+      document.getElementById('container').appendChild(img)
 
       img.onload = function () {
         oWidth = this.width
