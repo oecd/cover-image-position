@@ -22,7 +22,7 @@ div#maintitle, div#subtitle, div#year {
   z-index: 1111;
   position: absolute;
   left: 158px;
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-weight: 550;
 }
 div#maintitle {
