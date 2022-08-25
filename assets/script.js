@@ -38,7 +38,7 @@ window.onload = function () {
         var vph = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
         // these are thee coordinates for the optical centre of the template.png
-        var coverCenterX = 326
+        var coverCenterX = 319
         var coverCenterY = 520
 
         // resize images bigger than the viewport
@@ -140,7 +140,7 @@ window.onload = function () {
     console.log(`click on save button`)
     filename = `${document.getElementById('maintitle').innerText}.png`
     const container = document.querySelector('#container')
-    html2canvas(container, {width: 652, height: 850}).then(
+    html2canvas(container, {width: 639, height: 837}).then(
       (canvas) => {
         canvas.toBlob(function (blob) {
           saveAs(blob, filename)
