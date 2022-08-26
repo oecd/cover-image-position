@@ -3,6 +3,9 @@ window.onload = function () {
   var oHeight, oWidth
   var dropZone = document.getElementById('dropzone')
   var stats = document.getElementById('stats')
+  var title = document.getElementById('maintitle')
+  title.innerHTML = 'OECD Book Title ' + (new Date).getFullYear()
+
   var filename = 'cover-position-screenshot.png'
 
   function updateStats (img) {
@@ -38,7 +41,7 @@ window.onload = function () {
         var vph = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
         // these are thee coordinates for the optical centre of the template.png
-        var coverCenterX = 326
+        var coverCenterX = 319
         var coverCenterY = 520
 
         // resize images bigger than the viewport
@@ -140,7 +143,7 @@ window.onload = function () {
     console.log(`click on save button`)
     filename = `${document.getElementById('maintitle').innerText}.png`
     const container = document.querySelector('#container')
-    html2canvas(container, {width: 652, height: 850}).then(
+    html2canvas(container, {width: 639, height: 837}).then(
       (canvas) => {
         canvas.toBlob(function (blob) {
           saveAs(blob, filename)

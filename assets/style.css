@@ -17,7 +17,7 @@ div#container {
   position: relative;
 }
 
-div#maintitle, div#subtitle, div#year {
+div#maintitle, div#subtitle, div#additionalText {
   color: black;
   z-index: 1111;
   position: absolute;
@@ -35,7 +35,7 @@ div#subtitle {
   font-size: 18px;
   text-transform: uppercase;
 }
-div#year {
+div#additionalText {
   top: 278px;
   font-size: 18px;
 }
@@ -43,7 +43,7 @@ div#quotezone {
   position: absolute;
   background-color: #8ec64b;
   top: 136px;
-  left: 27px;
+  left: 20px;
   width: 598px;
   height: 600px;
 }
@@ -141,8 +141,8 @@ img#coverimage {
 div#dropzone {
   /*display: none;*/
   z-index: 5;
-  height: 850px;
-  width:652px;
+  height: 837px;
+  width:639px;
 /*  border: 1px dotted red;*/
   margin: auto;
   position: absolute;
@@ -156,7 +156,7 @@ div#dropzone:before {
   font-weight: 700;
   font-size: 300%;
   color: #ed5100;
-  left: 20%;
+  left: 25%;
   top: 55%;
   position: absolute;
   text-shadow: 0 0 3px #fff;
@@ -175,7 +175,7 @@ div#dropzone:hover:before {
   font-weight: 700;
   font-size: 300%;
   color: white;
-  left: 20%;
+  left: 25%;
   top: 55%;
   position: absolute;
   text-shadow: 0 0 3px #fff;
