@@ -17,7 +17,7 @@ div#container {
   position: relative;
 }
 
-div#maintitle, div#subtitle, div#year {
+div#maintitle, div#subtitle, div#additionalText {
   color: black;
   z-index: 1111;
   position: absolute;
@@ -35,7 +35,7 @@ div#subtitle {
   font-size: 18px;
   text-transform: uppercase;
 }
-div#year {
+div#additionalText {
   top: 278px;
   font-size: 18px;
 }

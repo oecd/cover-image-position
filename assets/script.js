@@ -3,6 +3,9 @@ window.onload = function () {
   var oHeight, oWidth
   var dropZone = document.getElementById('dropzone')
   var stats = document.getElementById('stats')
+  var title = document.getElementById('maintitle')
+  title.innerHTML = 'OECD Book Title ' + (new Date).getFullYear()
+
   var filename = 'cover-position-screenshot.png'
 
   function updateStats (img) {
